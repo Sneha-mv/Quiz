@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    {{ course.course_name }} - Quiz
+{% endblock %}
+{% block content %}
+
+<style>
+input[type="radio"] {
+    margin-right: 10px;
+}
+
+label {
+    font-size: 16px;
+    margin-left: 5px;  
+}
+</style>
+
+<div class="exam-container">
+    {% if is_submitted %}
+    <h1>Quiz Completed!</h1>
+    <div class="card text-center mark-sec1">
+        <h4 class="card-header text-white" style="background-color: rgb(5, 96, 5);">{{ course.course_name }} Quiz</h4>
+        <br>
+        <div class="card-body" style="background-color: #f9f9f9;">
+            <h5 class="card-title" style="font-weight: bold;">You Have Successfully Completed This Quiz!</h5>
+            <p class="card-text" style="font-size: 18px;">You scored: 
+                <strong style="color: rgb(148, 36, 16); font-size: 20px;">{{ total_marks }}</strong> 
+                out of <strong style="color: rgb(148, 36, 16); font-size: 20px;">{{ course.total_marks }}</strong>
+            </p>
+            <p style="font-size: 18px; margin-top: 15px;">
+                <strong>Performance Feedback:</strong> {{ performance }}
+            </p>
+            <div class="actions" style="margin-top: 50px;">
+                <a href="{% url 'quizapp:studentdashboard' %}" class="btn btn-info" style="margin-right: 10px;font-size: 16px;text-transform: uppercase;">Go to Dashboard</a>
+                <a href="{% url 'quizapp:review_answer' course.id %}" class="btn btn-info" style="margin-right: 10px;font-size: 16px;text-transform: uppercase;">Review Answers</a>
+
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <h1>Welcome to the {{ course.course_name }} Quiz</h1>
+        <form method="post" action="">
+        {% csrf_token %}
+            <div>
+            {% for question in questions %}
+                <div class="question">
+                    <div class="question-content">
+                        <p><strong>{{ forloop.counter }}) {{ question.question }}</strong></p>
+                    </div>
+                    <div class="marks">
+                        <p>Marks: {{ question.marks }}</p>
+                    </div>
+                </div>
+                    
+                <div class="question-options">
+                    <div>
+                        <input type="radio" id="option1_{{ question.id }}" name="question_{{ question.id }}" value="Option1">
+                        <label for="option1_{{ question.id }}">{{ question.option1 }}</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="option2_{{ question.id }}" name="question_{{ question.id }}" value="Option2">
+                        <label for="option2_{{ question.id }}">{{ question.option2 }}</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="option3_{{ question.id }}" name="question_{{ question.id }}" value="Option3">
+                        <label for="option3_{{ question.id }}">{{ question.option3 }}</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="option4_{{ question.id }}" name="question_{{ question.id }}" value="Option4">
+                        <label for="option4_{{ question.id }}">{{ question.option4 }}</label>
+                    </div>
+                </div>
+            {% endfor %}
+                <button type="submit" class="submit-btn">Submit</button>
+            </div>
+        </form>
+    {% endif %}   
+</div>
+
+<script>
+        document.querySelector('.submit-btn').addEventListener('click', function(event) {
+            event.preventDefault();
+            if (confirm('Are you sure you want to submit the exam?')) {
+                // Proceed with the form submission
+                event.target.closest('form').submit();
+            }
+        });
+</script>
+{% endblock %}
+
+

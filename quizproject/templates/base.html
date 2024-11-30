@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <script src="https://kit.fontawesome.com/8b8ca58c15.js" crossorigin="anonymous"></script>
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+    <div>
+        <div class="sticky-top nav-sec1" >
+            <nav class="navbar navbar-expand-lg">
+                <a class="navbar-brand" href="{% url 'quizapp:index' %}">
+                    <img src="{% static 'img/ch.png' %}" alt="Logo" style="width: 75px;height: 65px;margin-top: -5px;">
+                    <h class="logo2">Challenge Hub</h>
+                </a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-left: 550px;">
+                        <li class="nav-item">
+                            <a class="nav-link nav-text" href="{% url 'quizapp:index' %}" style="margin-right: -80px;">
+                                <i class="fa-solid fa-house"></i> HOME
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-text" href="{% url 'quizapp:about' %}" style="margin-right: -80px;">
+                                <i class="fa-solid fa-address-card"></i> ABOUT
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-text" href="{% url 'quizapp:studentlogin' %}" style="margin-right: -80px;">
+                                <i class="fa-solid fa-person"></i> LOGIN
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-text" href="{% url 'quizapp:contact' %}">
+                                <i class="fa-solid fa-phone"></i> CONTACT
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+    {% block content %}
+    {% endblock %}
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+
+        <footer>
+            <div class="footer1" style="background-color: #242222">
+                <p> &copy; Challenge Hub Pvt Ltd. All rights reserved </p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
+
+

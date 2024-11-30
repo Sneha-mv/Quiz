@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Complete Profile
+{% endblock %}
+{% block content %}
+<div class="container mt-5" style="height: 570px;">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <div class="card shadow-lg">
+                <div class="card-header text-center text-white" style="background-color: #0c2c93;">
+                    <h4>Complete Your Profile</h4>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        <div class="mb-3 row">
+                            <div class="col-md-6 cp-sec1">
+                                <label for="email" class="form-label fw-bold">First Name</label>
+                                <input type="text" id="first_name" name="first_name" 
+                                       placeholder="First Name" class="form-control rounded-pill" 
+                                       value="{{ user.first_name }}" style="font-size: 17px;height: 45px;"/>
+                            </div>
+                            <div class="col-md-6 cp-sec1">
+                                <label for="email" class="form-label fw-bold">Last Name</label>
+                                <input type="text" id="last_name" name="last_name"
+                                       placeholder="Last Name" class="form-control rounded-pill"
+                                       style="font-size: 17px;height: 45px;" value="{{ user.last_name }}"/>
+                            </div>
+                        </div>
+                        <div class="mb-3 cp-sec1">
+                            <label for="email" class="form-label fw-bold">Username</label>
+                            <input type="text" id="username" name="username" 
+                                   placeholder="Username" class="form-control rounded-pill"
+                                   style="font-size: 17px;height: 45px;" value="{{ user.username }}" required/>
+                        </div>
+                        <div class="mb-3 cp-sec1">
+                            <label for="email" class="form-label fw-bold">Email</label>
+                            <input type="email" id="email" name="email"
+                                   class="form-control rounded-pill" value="{{ user.email }}" required/>
+                        </div>
+                        <div class="mb-3 cp-sec1">
+                            <label for="phone_number" class="form-label fw-bold">Phone Number</label>
+                            <input type="text" id="phone_number" name="phone_number" 
+                                   class="form-control rounded-pill" value="{{ phone_number }}"/>
+                        </div>
+                        <div class="d-grid cp-sec2">
+                            <button type="submit" class="btn btn-lg rounded-pill text-white">Save Change</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

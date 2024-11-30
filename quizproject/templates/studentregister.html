@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} 
+    Sign Up
+{% endblock %}
+{% block content %}
+<div class="stulog-sec1">
+    <h1>Welcome to Challenge Hub</h1>
+    <h6>Start your Journey here</h6>
+</div>
+<div class="stulog-sec2">
+<div class="log-sec1">
+   <div class="container log-sec2" id="container">
+        <div class="form-container sign-in">
+            <form action="" method="post">
+                {% csrf_token %}
+                <h1 style="font-family: 'Times New Roman', Times, serif;font-weight: bold;">Create Account</h1>
+                <input type="text" placeholder="Username" name="username" style="margin-top: 25px;">
+                <input type="email" placeholder="Email" name="email">
+                <input type="password" placeholder="Password" name="password">
+                <input type="password" placeholder="Confirm Password" name="cpassword">
+                <br>
+                <button type="submit" style="margin-top: -2px;">Sign Up</button>
+            </form>
+            {% if messages %}
+            <div class="message-box">
+                {% for message in messages %}
+                    <div class="message {{ message.tags }}" style="margin-top: 3px;margin-left: 100px;">{{ message|safe }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-right">
+                        <h1 style="font-family: 'Times New Roman', Times, serif;font-weight: bold;">Welcome Back!</h1>
+                        <p>If you already have an account</p>
+                        <a href="{% url 'quizapp:studentlogin' %}"><button>Log In</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} 
+    About Us  
+{% endblock %}
+{% block content %}
+<div class="about-sec1">
+    <div class="container">
+        <div class="row mx_auto">
+            <div class="col-12 col-md-6">
+                <img src="{% static 'img/aboutquiz.jpg' %}" alt="index-future" class="about-sec2" >
+            </div>
+            <div class="col-12 col-md-6">
+                <h3 class="about-sec3">Learn, Compete, Grow: About ChallengeHub</h3> 
+                <br>
+                <p style="padding-left: 60px;font-size: 18px;">ChallengeHub is an innovative online quiz platform that is designed to make learning interactive and more enjoyable. 
+                    It offers a variety of quizzes across diverse topics, catering to students, professionals, and trivia enthusiasts alike. 
+                    With its user-friendly interface and engaging features, Challenge Hub is your go-to destination to test your knowledge, improve  skills, and have fun. 
+                    Whether you're competing with friends or exploring new subjects, ChallengeHub brings a world of challenges right to your fingertips.
+                </p>  
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

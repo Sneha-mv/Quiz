@@ -1,0 +1,551 @@
+body {
+    margin: 0;
+}
+
+
+/* navbar section in base.html */
+.nav-sec1 {
+    width: 100%;
+    height: 75px;
+    background-color:#242222;
+}
+
+.logo2 {
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 26px;
+    color: #9cd7ea;
+    text-transform: capitalize;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.25);
+    letter-spacing: 1px;
+    position: relative;  
+}
+
+.nav-item {
+    font-size:17px;
+    font-family: 'Poppins', sans-serif;
+    margin-left: 105px;
+    margin-top: -5px;
+} 
+
+.nav-link i {
+    margin-right: 7px; 
+    font-size: 17px; 
+    font-weight: 600; 
+    color: white;
+}
+
+.nav-text {
+    color: #97d7ed !important;
+}
+
+.footer1 {
+    font-size: 19px;
+    text-align: center;
+    padding: 15px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    color: #97d7ed ;
+}
+
+
+/* about page */
+.about-sec1 {
+    width: 100%;
+    height:600px;
+    background-color: whitesmoke;
+}
+
+.about-sec2 {
+    display: block;
+    width: 560px;
+    height: 480px;
+    margin-top: 50px; 
+    border-bottom-left-radius: 40%;
+    padding-top: 20px;
+}
+
+.about-sec3 {
+    text-align: center;
+    color: #1e0669;
+    font-size: 20px;
+    font-weight: bold;
+    padding-top: 100px;
+    font-size: 40px;
+    padding-left: 50px;
+    font-family: 'Merriweather', 'Times New Roman', Times, serif;
+}
+
+
+/* student login and register page */
+.stulog-sec1 {
+    height: 100px;
+    background-color: #c9d6ff;
+    background: linear-gradient(to right,#e2e2e2,#c9d6ff);
+}
+
+.stulog-sec1 h1 {
+    font-weight: 700;
+    font-style: italic;
+    font-size: 28px;
+    color: #320fae;
+    font-family: 'Merriweather', 'Times New Roman', Times, serif;
+    text-transform: capitalize;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.25);
+    letter-spacing: 1px;
+    position: relative; 
+    text-align: center;
+    padding-top: 30px;
+}
+
+.stulog-sec1 h6 {
+    font-weight: 900;
+    font-style: italic;
+    font-family: 'Merriweather', 'Times New Roman', Times, serif;
+    text-transform: capitalize;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.25);
+    letter-spacing: 1px;
+    position: relative; 
+    text-align: center;
+}
+
+.stulog-sec2 {
+    min-height: 500px;
+    max-height: 100%;
+    background-color: #ede9f8;
+}
+
+.log-sec1 {
+    height: 600px;
+    background-color: #c9d6ff;
+    background: linear-gradient(to right,#e2e2e2,#c9d6ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 87vh;
+}
+
+.log-sec2 {
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.35);
+    position: relative;
+    overflow: hidden;
+    width: 900px;
+    max-width: 100%;
+    min-height: 500px;
+    margin-top: -70px;
+}
+
+.log-sec2 p {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    margin: 20px 0;
+}
+
+.log-sec2 span {
+    font-size: 12px;
+}
+
+.log-sec2 a {
+    color: #333;
+    font-size: 18px;
+    text-decoration: none;
+    margin: 20px 0 10px;
+}
+
+.log-sec1 button {
+    background-color: #512da8;
+    color: #fff;
+    font-size: 15px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 3px;
+    cursor: pointer;
+    margin-left: 30px;
+}
+
+.log-sec2 button.hidden {
+    background-color: transparent;
+    border-color: #fff;
+}
+
+.log-sec2 form {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%;
+}
+
+.log-sec2 input {
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+}
+
+.form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+.sign-in {
+    left: 25px;
+    width: 50%;
+    z-index: 2;
+}
+
+.log-sec2.active .sign-in {
+    transform: translateX(100%);
+}
+
+.sign-up {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+.log-sec2.active .sign-up {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: move 0.6s;
+}
+
+@keyframes move{
+    0%, 49.99% {
+        opacity: 0;
+        z-index: 1;
+    }
+    50%, 100% {
+        opacity: 1;
+        z-index: 5;
+    }
+}
+
+.social-icons {
+    margin: 20px 0;
+}
+
+.social-icons a {
+    border: 1px solid #ccc;
+    border-radius: 20%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 3px;
+    width: 40px;
+    height: 40px;
+}
+
+.toggle-container {
+    position: absolute;
+    top: 0;
+    right: -5%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    border-radius: 150px 0 0 100px;
+    z-index: 1000;
+}
+
+.log-sec2.active .toggle-container {
+    transform: translateX(-100%);
+    border-radius: 0 150px 100px 0;
+}
+
+.toggle {
+    background-color: #512da8;
+    height: 100%;
+    background: linear-gradient(to right,#5c6bc0,#512da8);
+    color: #fff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.log-sec2.active .toggle {
+    transform: translateX(50%);
+}
+
+.toggle-panel {
+    position: absolute;
+    width: 55%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 30px;
+    text-align: center;
+    top: 0;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.toggle-left {
+    transform: translateX(-200%);
+}
+
+.log-sec2.active .toggle-left {
+    transform: translateX(0);
+}
+
+.toggle-right {
+    right: 0;
+    transform: translateX(0);
+}
+
+.log-sec2.active .toggle-right {
+    transform: translateX(200%);
+}
+
+/* registration and login time messages */
+.message-box {
+    margin-top: -490px;
+    margin-inline-start: -100px;
+    width: 630px;
+}
+
+.message {
+    padding: 10px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    padding-left: 130px;
+    font-weight: bold;
+}
+
+.message.success {
+    background-color: #dff0d8;
+    color: #3c763d;          
+    border-left: 4px solid #3c763d; 
+}
+
+.message.error {
+    background-color: #f2dede; 
+    color: #a94442;           
+    border-left: 4px solid #a94442; 
+}
+
+.message.password-length-error {
+    background-color: #f2dede; 
+    color: #a94442;           
+    border-left: 4px solid #a94442; 
+    padding-left: 70px;
+}
+
+
+/* user dashboard */
+.ud-sec1 {
+    width: 100%;
+    min-height: 80px;
+    background-color: #38383b; 
+}
+
+.ud-sec1 h4 {
+    color: white;
+    font-family: 'Merriweather', 'Times New Roman', Times, serif;
+    font-weight: 700;
+    font-size: 25px;
+    text-transform: capitalize;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.25);
+    letter-spacing: 1px;
+    position: relative; 
+    padding-top: 20px;
+    margin-left: 20px;
+}
+
+.ud-sec2 {
+    font-family: 'Merriweather', 'Times New Roman', Times, serif;
+    font-size: 17px;
+    margin-top: 23px;
+}
+
+.ud-sec3 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-family: 'Merriweather', 'Times New Roman', Times, serif;
+    margin-top: 60px;
+    text-align: center;
+}
+
+.ud-sec4 {
+    padding-left: 150px;
+    padding-right: 150px;
+    margin-top: 30px;
+} 
+
+
+/* start exam in userdashboard */
+.exam-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.exam-container  h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 20px;
+    font-family: 'Merriweather', 'Times New Roman', Times, serif;
+    font-size:40px;
+    font-weight: bold;
+    color: #6b0404;
+}
+
+.question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.question-content {
+    flex: 1;
+    font-size: 18px;
+}
+
+.marks {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.question-options div {
+    margin-bottom: 10px;
+}
+
+.submit-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 32px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 20%;
+    height: 50px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-left: 300px;
+}
+
+.submit-btn:hover {
+    background-color: #45a049;
+}
+
+.mark-sec1 {
+    height: 435px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    border-radius: 10px;
+}
+
+
+/* complete profile in userdashboard */
+.cp-sec1 {
+    margin-top: 10px;
+}
+
+.cp-sec2 {
+    background-color:  #0c2c93;
+    width: 150px;
+    border-radius: 10px;
+    margin-left: 170px;
+    margin-top: 25px;
+}
+
+
+/* contact page */
+.cnt-box1 {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    border: none;
+}
+
+.cnt-box2 {
+    margin-top: 20px;
+    border-color: #661004;
+    border-width: 2px;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.icon {
+    background-color:#d6e520;
+    border-radius: 80%;
+    color:#0E3500;
+    display: block;
+    font-size: 30px;
+    line-height: 50px;
+    height: 50px;
+    text-align: center;
+    width: 60px;
+    margin-top: 5px;
+    margin-bottom: -53px; 
+}
+
+.cnt-text {
+    font-weight: 700; 
+    font-family: "Poppins", sans-serif;
+    margin-inline-start: 90px;
+}
+
+.contact-bcimg {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 110px 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.cnt-frm {
+    width: 225px;
+    height: 50px;
+    border-radius: 15px;
+    border-color: black;
+    border-width: 2px;
+    padding-left: 50px;
+}
+
+.cnt-frm-btn {
+    width: 170px;
+    height: 50px;
+    border-radius: 15px;
+    border-color: black;
+    border-width: 2px;
+    padding-left: 15px;
+    display: block;
+    margin: auto;
+    background-color:#d6e520;
+    color: black;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+

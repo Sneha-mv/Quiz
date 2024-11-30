@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Contact Us
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 card cnt-box1" style="margin-top: 20px;">
+            <p style="font-size: 18px;">Have something in your mind you're interested in discussing with us? Drop us a line below, we’d love to talk.</p>
+            <div class="shadow card cnt-box2">
+                <div class="card-body">
+                    <span class="icon"> <i class="fas fa-map-marker-alt"></i> </span>
+                    <h4 class="cnt-text">Head office address :</h4>
+                    <h6 class="cnt-text">Arakkinar P.O, Beypore, Calicut 673028</h6>
+                </div>
+            </div>
+            <div class="shadow card cnt-box2">
+                <div class="card-body">
+                    <span class="icon"> <i class="fas fa-phone-volume"></i> </span>
+                    <h4 class="cnt-text">Mobile Number:</h4>
+                    <h6 class="cnt-text">9778021712</h6>
+                </div>
+            </div>
+            <div class="shadow card cnt-box2">
+                <div class="card-body">
+                    <span class="icon"> <i class="fas fa-envelope-open-text"></i> </span>
+                    <h4 class="cnt-text">Email Address :</h4>
+                    <h6 class="cnt-text">challengehub@gmail.com</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 card cnt-box1">
+            <div class="contact-bcimg" style="background-image: url('https://img.freepik.com/premium-photo/bright-green-meadow-with-grass_124507-13850.jpg');">
+                {% if messages %}
+                <div>
+                    {% for message in messages %}
+                    <div class="alert 
+                        {% if message.tags == 'error' %}alert-danger{% endif %}
+                        {% if message.tags == 'success' %}alert-success{% endif %}">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                
+                <form id="contactusform" class="contact-form" action="" method="post" role="form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="text" name="name" placeholder="Name" class="cnt-frm">
+                    <input type="number" id="phone" name="phone" class="cnt-frm" placeholder="Mobile Number" pattern="[0-9]{5}[0-9]{5}" required>
+                    <br><br>
+                    <input type="email" name="email" placeholder="Email" style="width: 100%;" class="cnt-frm">
+                    <br><br>
+                    <textarea rows="8" placeholder="Enter Message" name="message" style="width: 100%;height:150px;padding-top:30px;" class="cnt-frm"></textarea>
+                    <br><br>
+                    <input type="submit" value="Submit" class="cnt-frm-btn">
+                </form>
+            </div>
+        </div>  
+    </div>
+</div>            
+{% endblock %}
+
+

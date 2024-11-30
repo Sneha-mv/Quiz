@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Admin ViewQuestions
+{% endblock %}
+{% block content %}
+
+<style>
+.question-section {
+    width: 100%;
+    min-height: 550px;
+    max-height: 100%;
+}
+
+.question-section h2 {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-family: 'Merriweather', 'Times New Roman', Times, serif;
+    margin-top: 50px;
+    text-align: center;
+    color: maroon;
+    text-transform: uppercase;
+}
+</style>
+
+<div class="container question-section mt-5">
+    <h2>{{ course.course_name }} - Questions</h2>
+    <hr>
+    {% if questions %}
+        <ul class="list-group">
+            {% for question in questions %}
+                <li class="list-group-item" style="margin-top: 10px; padding-top: 20px;font-size: 17px;">
+                    <strong>Q{{ forloop.counter }}: {{ question.question }}</strong>
+                    <ul style="padding-top: 10px; line-height: 28px;">
+                        <li>Option 1: {{ question.option1 }}</li>
+                        <li>Option 2: {{ question.option2 }}</li>
+                        <li>Option 3: {{ question.option3 }}</li>
+                        <li>Option 4: {{ question.option4 }}</li>
+                    </ul>
+                    <p style="padding-top: 10px;"><strong>Correct Answer:</strong> {{ question.answer }}</p>
+                    <form action="{% url 'quizapp:delete_question' question.id %}" method="POST" style="display:inline;">
+                        {% csrf_token %}
+                            <a>
+                                <button type="submit" class="btn btn-danger btn-sm" style="margin-left: 10px;">Delete</button>
+                            </a>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No questions available for this course.</p>
+    {% endif %}
+    <br>
+    <a href="{% url 'quizapp:admindashboard' %}">
+        <button type="submit" class="btn btn-primary btn-sm" style="margin-left: 10px;">Go TO Dashboard</button>
+    </a>
+    <br><br>
+</div>
+{% endblock %}
+
+

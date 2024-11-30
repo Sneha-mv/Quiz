@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} 
+    Sign In  
+{% endblock %}
+{% block content %}
+<div class="stulog-sec1">
+    <h1>Welcome to Challenge Hub</h1>
+    <h6>Start your Journey here</h6>
+</div>
+<div class="stulog-sec2">
+    <div class="log-sec1">
+        <div class="container log-sec2" id="container">
+             <div class="form-container sign-in">
+                 <form action="" method="post">
+                     {% csrf_token %}
+                     <h1 style="font-family: 'Times New Roman', Times, serif;font-weight: bold;margin-left: 30px;">Sign In</h1>
+                     <input type="email" placeholder="Email" name="email">
+                     <input type="password" placeholder="Password" name="password">
+                     <a href="{% url 'quizapp:forgot_password' %}" style="color: black;margin-top: 15px;text-decoration: none;">Forgot your password?</a>
+                     <button type="submit" style="margin-top: 15px;">Log In</button>
+                 </form>
+             {% if messages %}
+                 <div class="message-box">
+                     {% for message in messages %}
+                         <div class="message {{ message.tags }}" style="margin-top: 30px;margin-left: 90px;padding-left: 60px;">{{ message }}</div>
+                     {% endfor %}
+                 </div>
+             {% endif %}
+             </div>
+             <div class="toggle-container">
+                 <div class="toggle">
+                     <div class="toggle-panel toggle-right">
+                         <h1 style="font-family: 'Times New Roman', Times, serif;font-weight: bold;">Hello,Friend!</h1>
+                         <p>If you don't have an account</p>
+                         <a href="{% url 'quizapp:studentregister' %}"><button>Sign Up</button></a>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+</div>
+{% endblock %}
+
+

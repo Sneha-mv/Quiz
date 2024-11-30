@@ -1,0 +1,251 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    User Dashboard
+{% endblock %}
+{% block content %}
+
+<style>
+.card {
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-body h4 {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.card-body h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.container-fluid .row .col-md-3 {
+    height: 100vh; 
+}
+
+img.rounded-circle {
+    border: 2px solid #fff;
+}
+
+.profile-section, .quizzes-section, .marks-section {
+    display: none;
+    background-color: #e5def2;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-section h4, .quizzes-section h4, .marks-section h4 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-family: 'Merriweather', 'Times New Roman', Times, serif;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.quizzes-section .card {
+    margin-bottom: 35px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+    
+th {
+    background-color: #4f6174;
+    color: white;
+}
+</style>
+
+<div class="ud-sec1">   
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+        <h4>Welcome &nbsp;{{ user.username }}</h4>
+        <div>
+            <a href="{% url 'quizapp:complete_profile' %}" class="btn btn-primary btn-sm me-2 ud-sec2" style="margin-right: 30px;">Complete Profile</a>
+            <a href="{% url 'quizapp:studentlogout' %}" class="btn btn-danger btn-sm ud-sec2" style="margin-right: 30px;">Logout</a>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 col-lg-2 vh-100" id="sidebar" style="background-color: #38383b;max-height: 100%;">
+            <div class="d-flex flex-column p-3">
+                <div class="text-center mb-4">
+                    <img src="{% static 'img/userprofile.png' %}" alt="Student Icon" class="rounded-circle" style="width: 70px; height: 70px;">
+                    <h6 class="text-white" style="margin-top: 10px;">User Dashboard</h6>
+                </div>
+                <ul class="flex-column" style="list-style-type: none;margin-top: 25px;">
+                    <li>
+                        <a href="#" class="text-white profile-link" style="text-decoration: none;"><i class="fa-solid fa-user"></i>&nbsp;&nbsp;Profile</a>
+                    </li>
+                    <br>
+                    <li>
+                        <a href="#" class="text-white topics-link" style="text-decoration: none;"><i class="fa-solid fa-list-ul"></i>&nbsp;&nbsp;Topics</a>
+                    </li>
+                    <br>
+                    <li>
+                        <a href="#" class="text-white quizzes-link" style="text-decoration: none;"><i class="fa-solid fa-circle-question"></i>&nbsp;&nbsp;Quizzes</a>
+                    </li>
+                    <br>
+                    <li>
+                        <a href="#" class="text-white marks-link" style="text-decoration: none;"><i class="fa-solid fa-newspaper"></i>&nbsp;&nbsp; Marks</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-9 col-lg-10 p-4">
+            <div class="row" style="margin-top: 15px;">
+                <div class="col-md-4">
+                    <div class="card text-white text-center" style="background-color: #a94442">
+                        <div class="card-body">
+                            <h4>Available Topics</h4>
+                            <h1>{{ courses.count }}</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-white text-center" style="background-color: #0a9549;">
+                        <div class="card-body">
+                            <h4>Total Questions</h4>
+                            <h1>{{ total_questions }}</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-white text-center" style="background-color: #ba14b9">
+                        <div class="card-body">
+                            <h4>Completed Quizzes</h4>
+                            <h1>{{ results|length }}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Section -->
+            <div class="profile-section mt-4">
+                <h4>Profile Details</h4>
+                <div class="row">
+                    <div class="col-md-6" style="padding-left: 315px;font-size: 18px;">
+                        <p><strong>Username:</strong> {{ user.username }}</p>
+                        <p><strong>First Name:</strong> {{ user.first_name }}</p>
+                        <p><strong>Email:</strong> {{ user.email }}</p>
+                    </div>
+                    <div class="col-md-6" style="padding-left: 70px;font-size: 18px;">
+                        <p><strong>Password:</strong> ********</p>
+                        <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+                        <p><strong>Phone Number:</strong> {{ user.profile.phone_number }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Topics Section -->
+            <div class="topics-section mt-4" style="display: none;">
+                <h4 class="ud-sec3">Available Topics</h4>
+                <ul class="list-group ud-sec4">
+                    {% for topic in courses %}
+                        <li class="list-group-item" style="background-color: #d8e1f4;">{{ topic.course_name }}</li>
+                    {% empty %}
+                        <li class="list-group-item">No topics available.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- Quizzes Section -->
+            <div class="quizzes-section mt-4">
+                <h4>Quizzes</h4>
+                <div class="row">
+                    {% for course in courses %}
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header text-center">
+                                <h5>{{ course.course_name }}</h5>
+                            </div>
+                            <div class="card-body text-center">
+                                <p>Total Questions: {{ course.question_number }}</p>
+                                <p>Total Marks: {{ total_questions }}</p>
+                                <a href="{% url 'quizapp:start_exam' course.id %}" class="btn btn-info">Start Quiz</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="col-12">
+                        <p class="text-center">No quizzes available.</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Marks Section -->
+            <div class="marks-section mt-4">
+                <h4>My Marks</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Course</th>
+                            <th>Marks Scored</th>
+                            <th>Total Marks</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for result in results %}
+                            <tr>
+                                <td>{{ result.exam.course_name }}</td>
+                                <td>{{ result.marks }}</td>
+                                <td>{{ result.exam.total_marks }}</td>
+                                <td>{{ result.date|date:"d-m-Y" }}</td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="4">No marks available.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelector('.profile-link').addEventListener('click', function(event) {
+        event.preventDefault();
+        toggleSection('profile');
+    });
+
+    document.querySelector('.topics-link').addEventListener('click', function(event) {
+        event.preventDefault();
+        toggleSection('topics');
+    });
+
+    document.querySelector('.quizzes-link').addEventListener('click', function(event) {
+        event.preventDefault();
+        toggleSection('quizzes');
+    });
+
+    document.querySelector('.marks-link').addEventListener('click', function (e) {
+        e.preventDefault();
+        toggleSection('marks');
+    });
+
+    function toggleSection(section) {
+        const sections = ['profile', 'topics', 'quizzes', 'marks'];
+        sections.forEach((sec) => {
+            document.querySelector(`.${sec}-section`).style.display = sec === section ? 'block' : 'none';
+        });}
+</script>
+{% endblock %}
+
+
