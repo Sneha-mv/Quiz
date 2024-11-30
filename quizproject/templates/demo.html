@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+    <style>
+        .dashboard-card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .dashboard-card-header {
+            background-color: #f4f4f9;
+            font-weight: bold;
+        }
+        .course-card {
+            margin-bottom: 20px;
+        }
+        .progress-bar {
+            background-color: #4caf50;
+        }
+    </style>
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Sidebar (optional) -->
+            <div class="col-md-3">
+                <div class="card dashboard-card">
+                    <div class="card-header dashboard-card-header">
+                        <h4>Welcome, {{ user.username }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>View your courses and results</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main content area -->
+            <div class="col-md-9">
+                <div class="card dashboard-card">
+                    <div class="card-header dashboard-card-header">
+                        <h4>My Courses</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            {% for course in courses %}
+                            <div class="col-md-4 course-card">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>{{ course.course_name }}</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p>Questions: {{ course.question_number }}</p>
+                                        <p>Total Marks: {{ course.total_marks }}</p>
+                                       
+                                        <a href="{% url 'quizapp:start_exam' course.id %}" class="btn btn-primary">Start Exam</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Optional: Add overall stats -->
+                <div class="card dashboard-card mt-4">
+                    <div class="card-header dashboard-card-header">
+                        <h4>Overall Stats</h4>
+                    </div>
+                    <div class="card-body">
+                        <h5>Overall Performance</h5>
+                        <div class="progress mb-3">
+                            <div class="progress-bar">
+                                {{ total_marks_obtained }} / {{ total_marks_possible }} Marks
+                            </div>
+                        </div>
+                        <p>Keep up the great work!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
